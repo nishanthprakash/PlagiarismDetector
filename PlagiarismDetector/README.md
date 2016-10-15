@@ -24,7 +24,7 @@ TUPLE_SIZE this is an optional parameter, which is a number specifying the numbe
 
 OUTPUT:
 
-The percentage of the manuscript content plagiarized from input file is output.
+The percentage of the input file content used in the manuscript file is the output.
 
 
 NOTES:
