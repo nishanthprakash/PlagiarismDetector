@@ -17,19 +17,24 @@ public class DetectorEngine {
 
 
         // Get the synonyms
+        System.out.println("Reading synonyms ... \n\n");
         obtainSynonyms(in);
 
         // Create the hash of manuscripts tuples
+        System.out.println("Reading manuscript ... \n\n");
         parseManuscript(in);
 
         // Convert the second file tuples and hash them
+        System.out.println("Checking for similar content in other file(s)... \n\n");
         checkFudgings(in);
 
         // Render Report
-        renderer.renderCLI(reports);
+        System.out.println("Rendering reports ... \n\n");
+        renderReport();
     }
 
     private void renderReport() {
+        renderer.renderCLI(reports);
     }
 
     private void checkFudgings(PlagiarismDetector.Input in) {

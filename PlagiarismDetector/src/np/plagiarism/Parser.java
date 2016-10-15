@@ -35,7 +35,6 @@ public class Parser {
                     fudges++;
                 }
             }
-
             noOfTups++;
         }
         if (rep == null) {

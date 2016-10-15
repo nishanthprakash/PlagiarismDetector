@@ -6,6 +6,7 @@ package np.plagiarism;
 public class Report {
     private int fudgeCount;
     private int tupleCount;
+    private int fudgePercentage;
 
 
     public int getFudgeCount() {
@@ -22,5 +23,14 @@ public class Report {
 
     public void setTupleCount(int tupleCount) {
         this.tupleCount = tupleCount;
+        setFudgePercentage(fudgeCount*100/tupleCount);
+    }
+
+    public int getFudgePercentage() {
+        return fudgePercentage;
+    }
+
+    public void setFudgePercentage(int fudgePercentage) {
+        this.fudgePercentage = fudgePercentage;
     }
 }
