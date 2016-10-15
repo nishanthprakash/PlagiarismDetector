@@ -6,6 +6,8 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
+ * Takes care of parsing the files input and the manuscript
+ *
  * Created by nishanth on 10/14/2016.
  */
 public class Parser {
@@ -14,6 +16,19 @@ public class Parser {
         return file.replaceAll("[^0-9a-zA-Z ]", "").toLowerCase().split("\\s+");
     }
 
+
+    /**
+     * Parse does both the task of parsing the manuscript as well as check amount of content
+     * used from input file(s), depending on the last parameter rep
+     *
+     * @param file
+     * @param tuple_len
+     * @param synonyms
+     * @param man
+     * @param rep : if this is null then it means we are processing the manuscript
+     *              otherwise, a report is passed to collect data about amount of i/p file
+     *              used in the manuscript
+     */
     public void parse(String file, int tuple_len, SynSet synonyms, Manuscript man, Report rep){
 
         BufferedReader br = fileRead(file);
@@ -72,6 +87,13 @@ public class Parser {
         return encodedTuple;
     }
 
+
+    /**
+     * To abstract away the details of reading files - used by SynSet and Parser
+     *
+     * @param file
+     * @return
+     */
     public static BufferedReader fileRead(String file){
         FileInputStream fis = null;
         try {

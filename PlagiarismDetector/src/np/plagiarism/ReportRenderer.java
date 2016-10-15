@@ -3,6 +3,8 @@ package np.plagiarism;
 import java.util.List;
 
 /**
+ *
+ * Deals with all the rendering/beautifying the output reports
  * Created by nishanth on 10/15/2016.
  */
 public class ReportRenderer {

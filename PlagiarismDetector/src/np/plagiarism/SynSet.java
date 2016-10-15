@@ -4,6 +4,7 @@ import java.io.*;
 import java.util.HashMap;
 
 /**
+ * Holds synonyms which hash to the same unique value.
  * Created by nishanth on 10/15/2016.
  */
 

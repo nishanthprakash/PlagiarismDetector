@@ -7,6 +7,10 @@ package np.plagiarism;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This is a program that checks for plagiarism between two given files using
+ * another file containing sets of synonym functions
+ */
 public class PlagiarismDetector {
 
     // args and defaults
@@ -40,6 +44,7 @@ public class PlagiarismDetector {
         int tupleLen;
     }
 
+
     public static void main (String[] args){
 
         if (args.length < REQUIRED_ARG_LEN) {
@@ -53,6 +58,11 @@ public class PlagiarismDetector {
         engine.run(in);
     }
 
+    /**
+     * Parses input into an Input object
+     * Note: As commandline options increase, it becomes necessary to
+     *       abstract away this parsing
+     */
     private static void parseInput(String[] args, int len, Input in){
         in.synonymFile = args[SYNONYM_FILE_INDEX];
         in.manuscript = args[MANUSCRIPT_INDEX];
@@ -61,6 +71,9 @@ public class PlagiarismDetector {
                 Integer.parseInt(args[TUPLE_SIZE_INDEX]): DEFAULT_TUPLE_LEN;
     }
 
+    /**
+     * Print the manual out
+     */
     private static void rtfm(){
         System.out.print(theManual);
         System.exit(1);

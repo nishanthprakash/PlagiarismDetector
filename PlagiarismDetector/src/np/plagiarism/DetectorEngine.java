@@ -5,6 +5,9 @@ import java.util.List;
 
 /**
  * Created by nishanth on 10/14/2016.
+ *
+ * DetectorEngine orchestrates all the tasks required to be done in the
+ * process of Plagiarism detection.
  */
 public class DetectorEngine {
     private Parser fparser = new Parser();
@@ -20,11 +23,11 @@ public class DetectorEngine {
         System.out.println("Reading synonyms ... ");
         obtainSynonyms(in);
 
-        // Create the hash of manuscripts tuples
+        // Create the hash of encoded manuscripts tuples
         System.out.println("Reading manuscript ... ");
         parseManuscript(in);
 
-        // Convert the second file tuples and hash them
+        // Check the input file's encoded tuples for a match in our manuscript data
         System.out.println("Checking for similar content in other file(s)... ");
         checkFudgings(in);
 
@@ -37,11 +40,12 @@ public class DetectorEngine {
         renderer.renderCLI(reports);
     }
 
+
     private void checkFudgings(PlagiarismDetector.Input in) {
         int files_no = in.inputFile.size();
         Report rep;
 
-        for(int i = 0; i < files_no; i++) {
+        for(int i = 0; i < files_no; i++) { // multiple reports passed if there are multiple input files
             rep = new Report();
             fparser.parse(in.inputFile.get(i), in.tupleLen, synonyms, man, rep);
             reports.add(rep);
