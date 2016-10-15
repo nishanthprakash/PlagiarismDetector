@@ -1,8 +1,6 @@
 package np.plagiarism;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.HashMap;
 
 /**
@@ -11,31 +9,40 @@ import java.util.HashMap;
 
 public class SynSet {
 
-    HashMap<String, Integer> belongs = new HashMap();
+    HashMap<String, String> belongs = new HashMap();
 
     public void store(String synonym_file) {
 
-        FileInputStream fis = new FileInputStream(synonym_file);
+        FileInputStream fis = null;
+        try {
+            fis = new FileInputStream(synonym_file);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
 
         //Construct BufferedReader from InputStreamReader
         BufferedReader br = new BufferedReader(new InputStreamReader(fis));
 
         String line = null;
         String[] words;
-        int num_words;
         int counter = 0;
 
-        while ((line = br.readLine()) != null) {
+        try {
+            while ((line = br.readLine()) != null) {
 
-            words = line.split("\\s+");
-            num_words = words.length();
+                words = line.split("\\s+");
 
-            for(int i = 0; i < num_words; i++) {
-                belongs.add(i.next(), counter);
+                for(int i = 0; i < words.length; i++) {
+                    belongs.put(words[i], "[" + Integer.toString(counter) + "]");
+                }
+                counter++;
             }
-            counter++;
+
+            br.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
-        br.close();
+
     }
 }

@@ -7,47 +7,47 @@ import java.util.List;
  * Created by nishanth on 10/14/2016.
  */
 public class DetectorEngine {
-
+    Parser fparser = new Parser();
+    List<Report> reports = new ArrayList<>();
+    SynSet synonyms = new SynSet();
+    Manuscript man = new Manuscript();
+    ReportRenderer renderer = new ReportRenderer();
 
     public void run(PlagiarismDetector.Input in) {
-        Parser fparser = new Parser();
-        List<Report> reports = new ArrayList<>();
+
 
         // Get the synonyms
         obtainSynonyms(in);
 
         // Create the hash of manuscripts tuples
-        parseManuscript(in, fparser);
+        parseManuscript(in);
 
         // Convert the second file tuples and hash them
-
-        checkFudgings(in, fparser, reports);
+        checkFudgings(in);
 
         // Render Report
-        renderReport(reports);
+        renderer.renderCLI(reports);
     }
 
-    private void renderReport(List<Report> reports) {
+    private void renderReport() {
     }
 
-    private void checkFudgings(PlagiarismDetector.Input in, Parser fparser, List<Report> reports) {
-        int files_no = in.input_file.size();
+    private void checkFudgings(PlagiarismDetector.Input in) {
+        int files_no = in.inputFile.size();
         Report rep;
 
         for(int i = 0; i < files_no; i++) {
             rep = new Report();
-            fparser.check(in.input_file.get(i), rep);
+            fparser.parse(in.inputFile.get(i), in.tupleLen, synonyms, man, rep);
             reports.add(rep);
         }
     }
 
-    private void parseManuscript(PlagiarismDetector.Input in, Parser fparser) {
-        Manuscript man = new Manuscript();
-        fparser.prepManu(in.manuscript, man);
+    private void parseManuscript(PlagiarismDetector.Input in) {
+        fparser.parse(in.manuscript, in.tupleLen, synonyms, man, null);
     }
 
     private void obtainSynonyms(PlagiarismDetector.Input in) {
-        SynSet synonyms = new SynSet();
-        synonyms.store(in.synonym_file);
+        synonyms.store(in.synonymFile);
     }
 }

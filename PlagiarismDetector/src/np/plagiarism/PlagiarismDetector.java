@@ -2,14 +2,23 @@
  * Created by nishanth on 10/14/2016.
  */
 
-package np.plagiarism
+package np.plagiarism;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class PlagiarismDetector {
 
-    static string theManual =     "Usage: Please input 3 arguments!\n\n"
+    // args and defaults
+    private static final int REQUIRED_ARG_LEN = 4;
+    private static final int SYNONYM_FILE_INDEX = 1;
+    private static final int MANUSCRIPT_INDEX = 2;
+    private static final int INPUT_FILE_INDEX = 3;
+    private static final int TUPLE_SIZE_INDEX = 4;
+
+    private static final int DEFAULT_TUPLE_LEN = 3;
+
+    static String theManual =     "\nUSAGE: Please input 3 arguments!\n\n"
                                 + "PLAGIARISM DETECTOR\n"
                                 + "-------------------\n\n"
                                 + "SYNOPSIS\n\n"
@@ -25,35 +34,34 @@ public class PlagiarismDetector {
                                 + "    contiguous words in a tuple that must be checked for co-occurrence\n\n";
 
     public static class Input {
-        List<String> input_file = new ArrayList<String>();
+        List<String> inputFile = new ArrayList<String>();
         String manuscript;
-        String synonym_file;
-        int tuple_len;
+        String synonymFile;
+        int tupleLen;
     }
 
     public static void main (String[] args){
 
-        int cli_len = args.length();
-        if (cli_len < 4) {
+        if (args.length < REQUIRED_ARG_LEN) {
             rtfm();
         }
 
         Input in = new Input();
-        parseInput(args, cli_len, in);
+        parseInput(args, args.length, in);
 
         DetectorEngine engine = new DetectorEngine();
         engine.run(in);
     }
 
-    private void parseInput(String[] args, int len, Input in){
-        in.synonym_file  = args[1];
-        in.manuscript = args[2];
-        in.input_file.add(args[3]);
-        in.tuple_len = len == 5 ? Integer.parseInt(args[4]): 0;
+    private static void parseInput(String[] args, int len, Input in){
+        in.synonymFile = args[SYNONYM_FILE_INDEX];
+        in.manuscript = args[MANUSCRIPT_INDEX];
+        in.inputFile.add(args[INPUT_FILE_INDEX]);
+        in.tupleLen = (len ==  TUPLE_SIZE_INDEX + 1) ?
+                Integer.parseInt(args[TUPLE_SIZE_INDEX]): DEFAULT_TUPLE_LEN;
     }
 
-
-    private void rtfm(){
+    private static void rtfm(){
         System.out.print(theManual);
         System.exit(1);
     }
