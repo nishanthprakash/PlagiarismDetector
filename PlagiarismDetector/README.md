@@ -5,6 +5,7 @@ SYNOPSIS
 
     PlagiarismDetector SYNONYM_FILE_NAME MANUSCRIPT INPUT_FILE [ TUPLE_SIZE ]
 
+
 DESCRIPTION:
 
 This is a program that checks for plagiarism between two given files
@@ -20,9 +21,11 @@ INPUT_FILE is another of the two files to be compared for plagiarism
 TUPLE_SIZE this is an optional parameter, which is a number specifying the number of
     contiguous words in a tuple that must be checked for co-occurrence
 
+
 OUTPUT:
 
 The percentage of the manuscript content plagiarized from input file is output.
+
 
 NOTES:
 
