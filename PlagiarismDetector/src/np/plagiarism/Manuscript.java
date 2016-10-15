@@ -12,10 +12,10 @@ public class Manuscript {
     private int tupleCount;
 
     public int getTupleCount() {
-        return totalTups;
+        return tupleCount;
     }
 
     public void setTupleCount(int totalTups) {
-        this.totalTups = totalTups;
+        this.tupleCount = totalTups;
     }
 }

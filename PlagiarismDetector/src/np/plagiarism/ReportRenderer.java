@@ -11,10 +11,13 @@ public class ReportRenderer {
 
         int reportsCount = reports.size();
 
-        System.out.println("The percentage amount of content in manuscript lifted from other files are:\n\n");
+        System.out.println("\n------------------------------------------------------------------------------");
+        System.out.println("FINAL REPORT");
+        System.out.println("------------------------------------------------------------------------------\n");
+        System.out.println("The percentage amount of content in manuscript lifted from other file(s) are:");
 
         for (int i = 0; i < reportsCount; i++ ){
-            System.out.println("File " + i + ": " + reports.get(i).getFudgePercentage());
+            System.out.println("File " + (i+1) + ": " + reports.get(i).getFudgePercentage());
         }
     }
 }

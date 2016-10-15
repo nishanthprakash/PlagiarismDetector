@@ -7,29 +7,29 @@ import java.util.List;
  * Created by nishanth on 10/14/2016.
  */
 public class DetectorEngine {
-    Parser fparser = new Parser();
-    List<Report> reports = new ArrayList<>();
-    SynSet synonyms = new SynSet();
-    Manuscript man = new Manuscript();
-    ReportRenderer renderer = new ReportRenderer();
+    private Parser fparser = new Parser();
+    private List<Report> reports = new ArrayList<>();
+    private SynSet synonyms = new SynSet();
+    private Manuscript man = new Manuscript();
+    private ReportRenderer renderer = new ReportRenderer();
 
     public void run(PlagiarismDetector.Input in) {
 
 
         // Get the synonyms
-        System.out.println("Reading synonyms ... \n\n");
+        System.out.println("Reading synonyms ... ");
         obtainSynonyms(in);
 
         // Create the hash of manuscripts tuples
-        System.out.println("Reading manuscript ... \n\n");
+        System.out.println("Reading manuscript ... ");
         parseManuscript(in);
 
         // Convert the second file tuples and hash them
-        System.out.println("Checking for similar content in other file(s)... \n\n");
+        System.out.println("Checking for similar content in other file(s)... ");
         checkFudgings(in);
 
         // Render Report
-        System.out.println("Rendering reports ... \n\n");
+        System.out.println("Rendering reports ... ");
         renderReport();
     }
 

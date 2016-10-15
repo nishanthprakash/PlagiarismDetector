@@ -10,11 +10,11 @@ import java.util.List;
 public class PlagiarismDetector {
 
     // args and defaults
-    private static final int REQUIRED_ARG_LEN = 4;
-    private static final int SYNONYM_FILE_INDEX = 1;
-    private static final int MANUSCRIPT_INDEX = 2;
-    private static final int INPUT_FILE_INDEX = 3;
-    private static final int TUPLE_SIZE_INDEX = 4;
+    private static final int REQUIRED_ARG_LEN = 3;
+    private static final int SYNONYM_FILE_INDEX = 0;
+    private static final int MANUSCRIPT_INDEX = 1;
+    private static final int INPUT_FILE_INDEX = 2;
+    private static final int TUPLE_SIZE_INDEX = 3;
 
     private static final int DEFAULT_TUPLE_LEN = 3;
 

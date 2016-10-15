@@ -13,15 +13,7 @@ public class SynSet {
 
     public void store(String synonym_file) {
 
-        FileInputStream fis = null;
-        try {
-            fis = new FileInputStream(synonym_file);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        //Construct BufferedReader from InputStreamReader
-        BufferedReader br = new BufferedReader(new InputStreamReader(fis));
+        BufferedReader br = Parser.fileRead(synonym_file);
 
         String line = null;
         String[] words;

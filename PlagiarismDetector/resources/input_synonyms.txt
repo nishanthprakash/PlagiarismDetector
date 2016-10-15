@@ -1,0 +1,3 @@
+run walk jog
+code program
+think ponder reflect ruminate
